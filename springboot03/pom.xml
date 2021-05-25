@@ -11,6 +11,7 @@
     <groupId>com.yzm</groupId>
     <artifactId>springboot03</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>springboot03</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -20,6 +21,25 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--排除web启动中自动依赖的tomcat插件-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--
+    手动依赖tomcat插件，但是表明项目打包时该依赖不会被打进去，目的主要是保证开发阶段本地SpringBoot
+    项目可以正常运行
+-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!--打包的时候可以不用包进去，别的设施会提供。事实上该依赖理论上可以参与编译，测试，运行等周期。
+                相当于compile，但是打包阶段做了exclude操作-->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -60,7 +80,13 @@
             <version>2.4.5</version>
         </dependency>
 
-
+        <!--开发者工具包，自动编译-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.4.5</version>
+            <optional>true</optional>
+        </dependency>
 
     </dependencies>
 
@@ -69,6 +95,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>

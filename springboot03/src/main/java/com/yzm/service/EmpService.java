@@ -13,4 +13,6 @@ import java.util.List;
 public interface EmpService {
 
     List<Emp> findAll();
+
+    boolean removeEmp(Integer empno, String ename);
 }

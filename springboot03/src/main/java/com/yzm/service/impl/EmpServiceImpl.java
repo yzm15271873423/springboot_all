@@ -25,4 +25,9 @@ public class EmpServiceImpl implements EmpService {
     public List<Emp> findAll() {
         return empMapper.findAll();
     }
+
+    @Override
+    public boolean removeEmp(Integer empno, String ename) {
+        return empMapper.removeEmp(empno, ename)>0?true:false;
+    }
 }

@@ -15,4 +15,6 @@ import java.util.List;
 public interface EmpMapper {
 
     List<Emp> findAll();
+
+    int removeEmp(Integer empno, String ename);
 }

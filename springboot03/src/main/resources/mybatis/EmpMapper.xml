@@ -7,4 +7,9 @@
     <select id="findAll" resultType="emp">
         select * from emp
     </select>
+
+    <!--int removeEmp(Integer empno, String ename);-->
+    <delete id="removeEmp">
+        delete from emp where empno =#{param1} and ename = #{param2}
+    </delete>
 </mapper>
